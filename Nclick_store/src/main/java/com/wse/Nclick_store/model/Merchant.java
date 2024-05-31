@@ -31,9 +31,9 @@ public class Merchant {
     private String contactPerson;
     private String email;
     private String phoneNumber;
-    private String merchantId;
+    private String merchantCode;
     private String password;
-    private MerchantStatus merchantStatus;
+    private MerchantStatus merchantStatus=MerchantStatus.DRAFT;
     private long createTime;
     private long updateTime;
     public Merchant(String gstNo, String panNo, String companyName, String address, String contactPerson, String email,String phoneNumber) {
@@ -50,7 +50,7 @@ public class Merchant {
 
     public Merchant(String id, String merchantId, String password, String email,String phoneNumber) {
         this.id = id;
-        this.merchantId = merchantId;
+        this.merchantCode = merchantId;
         this.password = password;
         this.email = email;
         this.phoneNumber=phoneNumber;

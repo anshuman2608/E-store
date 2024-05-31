@@ -76,11 +76,17 @@ public class MerchantServiceImpl implements MerchantService {
         return "Merchant saved with Email " + merchantRegisterRequest.getEmail();
     }
 
-//    @Override
-//    public Merchant getByEmailService(String email) {
-//        Optional<Merchant> merchant= merchantRepo.findByEmail(email);
-//        return merchantRepo.findByEmail(email);
-//    }
+    @Override
+    public Merchant getByEmailService(String email) {
+        Merchant merchant=null;
+               merchant= merchantRepo.findByEmail(email);
+        if(merchant!=null){
+            return merchantRepo.findByEmail(email);
+        }else {
+            return null;
+        }
+
+    }
 
 
 }

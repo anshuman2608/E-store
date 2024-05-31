@@ -21,6 +21,8 @@ public interface MerchantService  {
 
 
 
-    //Merchant getByEmailService(String email);
+    Merchant getByEmailService(String email);
+
+    //Merchant registerMerchantService(MerchantRegisterRequest merchantRegisterRequest);
 
 }

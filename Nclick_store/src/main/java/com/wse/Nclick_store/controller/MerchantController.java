@@ -26,15 +26,21 @@ public class MerchantController {
     //POST MAPPING
 
 
-//    @PostMapping("/register")
-//    public ResponseEntity<?> registerMerchantController(@RequestBody MerchantRegisterRequest merchantRegisterRequest){
-//
-//        try{
-//
-//        }catch (Exception e){
-//            return
-//        }
-//    }
+    @PostMapping("/register")
+    public ResponseEntity<?> registerMerchantController(@RequestBody MerchantRegisterRequest merchantRegisterRequest){
+
+        try{
+            Merchant merchant=merchantService.getByEmailService(merchantRegisterRequest.getEmail());
+            if(merchant==null){
+                return new ResponseEntity<>(merchantService.registerMerchantService(merchantRegisterRequest),HttpStatus.OK);
+            }else {
+                return new ResponseEntity<>("Merchant already registred",HttpStatus.OK);
+            }
+
+        }catch (Exception e){
+            return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
     //@ApiOperation(value = "Method for saving a Merchant " , reponse = ResponseEntity.class)
     @PostMapping("/save")
@@ -52,12 +58,24 @@ public class MerchantController {
 
     //GET MAPPING
 
-//    @GetMapping("/email")
-//    public ResponseEntity<?> getMerchantByEmail(@RequestParam("email") String email){
-//        Optional<Merchant> merchant=merchantService.getByEmailService(email);
-//
-//        return null;
-//    }
+    @GetMapping("/email")
+    public ResponseEntity<?> getMerchantByEmail(@RequestParam("email") String email){
+
+       try {
+           Merchant merchant=merchantService.getByEmailService(email);
+           if(merchant!=null){
+               return new ResponseEntity<>(merchant,HttpStatus.OK);
+           }else {
+               return new ResponseEntity<>("No Merchant Found",HttpStatus.OK);
+           }
+
+
+       }catch (Exception e){
+           return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+       }
+
+
+    }
 
     @GetMapping("/allMerchant")
     public ResponseEntity<?> getAllMerchant(){

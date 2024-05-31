@@ -37,5 +37,5 @@ public class MerchantRegisterRequest {
     @NotNull
     @NotEmpty(message = "Phone Number cannot be Empty")
     private  String phoneNumber;
-    private MerchantStatus merchantStatus=MerchantStatus.DRAFT;
+
 }
